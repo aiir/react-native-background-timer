@@ -3,10 +3,12 @@ import {
   NativeAppEventEmitter,
   NativeEventEmitter,
   NativeModules,
+  TurboModuleRegistry,
   Platform,
 } from 'react-native';
 
-const { RNBackgroundTimer } = NativeModules;
+const RNBackgroundTimer =
+  TurboModuleRegistry.get('RNBackgroundTimer') ?? NativeModules.RNBackgroundTimer;
 const Emitter = new NativeEventEmitter(RNBackgroundTimer);
 
 class BackgroundTimer {

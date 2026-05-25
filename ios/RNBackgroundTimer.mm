@@ -3,7 +3,7 @@
 //  react-native-background-timer
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import "RNBackgroundTimer.h"
 
 #ifdef RCT_NEW_ARCH_ENABLED
@@ -83,9 +83,9 @@ RCT_EXPORT_METHOD(setTimeout:(double)timeoutId
         [[UIApplication sharedApplication] endBackgroundTask:task];
     }];
 
-    __weak typeof(self) weakSelf = self;
+    __weak __typeof__(self) weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_MSEC)), dispatch_get_main_queue(), ^{
-        typeof(self) strongSelf = weakSelf;
+        __typeof__(self) strongSelf = weakSelf;
         if (strongSelf && strongSelf->_hasListeners) {
             [strongSelf sendEventWithName:@"backgroundTimer.timeout" body:@(timeoutId)];
         }
